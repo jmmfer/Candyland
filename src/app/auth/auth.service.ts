@@ -21,20 +21,20 @@ export class AuthService {
    }
    
    async login(email: string, password: string) {
-    var result = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    this.router.navigate(['admin/list']);
+    var result = await this.afAuth.signInWithEmailAndPassword(email, password)
+    this.router.navigate(['admin-products']);
 }
  async register(email: string, password: string) {
-  var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+  var result = await this.afAuth.createUserWithEmailAndPassword(email, password)
   
 }
 async sendPasswordResetEmail(passwordResetEmail: string) {
-  return await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+  return await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
 }
 async logout(){
-  await this.afAuth.auth.signOut();
+  await this.afAuth.signOut();
   localStorage.removeItem('user');
-  this.router.navigate(['admin/login']);
+  this.router.navigate(['signin']);
 }
 
 get isLoggedIn(): boolean {
@@ -42,8 +42,8 @@ get isLoggedIn(): boolean {
   return  user  !==  null;
 }
 async  loginWithGoogle(){
-  await  this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-  this.router.navigate(['admin/list']);
+  await  this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
+  this.router.navigate(['admin-products']);
 }
 
 }
