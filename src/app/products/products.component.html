@@ -1,11 +1,14 @@
 
 <div class="cards">
-<div  *ngFor="let item of items | async" style="width: 18rem;">
+<div  *ngFor="let productList of Product | async" style="width: 18rem;">
     <div class="card col">
     <img class="card-img-top" src="assets/img/logosinfondo.png" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{ item.productName }}</h5>
-      <p class="card-text"> {{ item.price }}</p>
+      <h5 class="card-title">{{ productList.ProductName }}</h5>
+      <h5 class="card-title">{{ productList.CategoryName }}</h5>
+      <h5 class="card-title">{{ productList.ProductPrice }}</h5>
+      
+      
       <a href="#" class="btn btn-primary">Buy Now</a>
     </div>
    </div>

@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  items: Observable<any[]>;
+  Product: Observable<any[]>;
 
   constructor(db: AngularFirestore){ 
-    this.items = db.collection('items').valueChanges();
+    this.Product = db.collection('Product').valueChanges();
   }
 
   ngOnInit(): void {

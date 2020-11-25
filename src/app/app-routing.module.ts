@@ -11,6 +11,9 @@ import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { AddCategoryComponent } from './admin/add-category/add-category.component'
+import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.component';
+import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
 
 
 const routes: Routes = [
@@ -23,7 +26,11 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin', component: AdminComponent},
   { path: 'admin-products', component: AdminProductsComponent },
-  { path: 'users', component: AdminUsersComponent }
+  { path: 'users', component: AdminUsersComponent },
+  { path: 'admin-category', component: AddCategoryComponent },
+  { path: 'admin-metodo-pago', component: AddMetodoPagoComponent },
+  { path: 'admin-metodo-retiro', component: AddMetodoRetiroComponent },
+
   
 ];
 

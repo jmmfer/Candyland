@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';  
+import { HttpClientModule } from '@angular/common/http'; 
+import { AngularFireDatabaseModule } from '@angular/fire/database';  
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
@@ -15,19 +19,12 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { HomeComponent } from './home/home.component';
-var firebaseConfig = {
-      apiKey: "AIzaSyBEo-AJ8Kfw9iyi4PkRWB6bMwcpeikA_cw",
-      authDomain: "candylandapp-f4eac.firebaseapp.com",
-      databaseURL: "https://candylandapp-f4eac.firebaseio.com",
-      projectId: "candylandapp-f4eac",
-      storageBucket: "candylandapp-f4eac.appspot.com",
-      messagingSenderId: "576862896650",
-      appId: "1:576862896650:web:dc76616aea8adfd9edd5f3",
-      measurementId: "G-E4BBMCH6HH"
-    };
-  
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AddCategoryComponent } from './admin/add-category/add-category.component';
+import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.component';
+import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
 
 @NgModule({
   declarations: [
@@ -41,14 +38,24 @@ var firebaseConfig = {
     UserComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    AddCategoryComponent,
+    AddMetodoPagoComponent,
+    AddMetodoRetiroComponent
   ],
   imports: [
    
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase, "cloud"),
+    AngularFireDatabaseModule,  
+    AngularFirestoreModule, 
+    FormsModule,
+    AngularFireStorageModule,
+  
+    
+
    
   ],
   providers: [],
