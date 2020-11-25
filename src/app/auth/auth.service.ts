@@ -26,6 +26,7 @@ export class AuthService {
 }
  async register(email: string, password: string) {
   var result = await this.afAuth.createUserWithEmailAndPassword(email, password)
+  console.log(result)
   
 }
 async sendPasswordResetEmail(passwordResetEmail: string) {

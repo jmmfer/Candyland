@@ -39,4 +39,7 @@ get f() { return this.form.controls; }
   this.authService.login(this.f.email.value, this.f.password.value)
   
   };
+  logout(){
+    this.authService.logout()
+  }
 }

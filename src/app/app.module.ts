@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';  
+
+import { ReactiveFormsModule } from '@angular/forms';  
 import { HttpClientModule } from '@angular/common/http'; 
 import { AngularFireDatabaseModule } from '@angular/fire/database';  
 
@@ -55,6 +57,7 @@ import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.
     AngularFirestoreModule, 
     FormsModule,
     AngularFireStorageModule,
+    FormsModule, ReactiveFormsModule
   
     
 
