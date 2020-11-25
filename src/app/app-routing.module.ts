@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component'
 import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.component';
 import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
+import { ForgotPasswordComponent } from  './user/forgot-password/forgot-password.component'
 
 
 const routes: Routes = [
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: 'admin-category', component: AddCategoryComponent },
   { path: 'admin-metodo-pago', component: AddMetodoPagoComponent },
   { path: 'admin-metodo-retiro', component: AddMetodoRetiroComponent },
+  { path:  'forgot-password', component:  ForgotPasswordComponent }
+  
 
   
 ];

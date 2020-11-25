@@ -25,6 +25,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
 import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.component';
 import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
+import { ForgotPasswordComponent } from './user/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-r
     HomeComponent,
     AddCategoryComponent,
     AddMetodoPagoComponent,
-    AddMetodoRetiroComponent
+    AddMetodoRetiroComponent,
+    ForgotPasswordComponent
   ],
   imports: [
    
