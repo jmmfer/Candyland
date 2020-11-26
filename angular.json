@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CandylandApp"
+    }
+  },
+  "defaultProject": "CandylandApp",
+  "cli": {
+    "analytics": false
+  }
 }

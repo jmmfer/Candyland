@@ -17,6 +17,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { HomeComponent } from './home/home.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { PickupComponent } from './pickup/pickup.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { PagoComponent } from './pago/pago.component';
 var firebaseConfig = {
       apiKey: "AIzaSyBEo-AJ8Kfw9iyi4PkRWB6bMwcpeikA_cw",
       authDomain: "candylandapp-f4eac.firebaseapp.com",
@@ -41,7 +45,11 @@ var firebaseConfig = {
     UserComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    DeliveryComponent,
+    PickupComponent,
+    ThankyouComponent,
+    PagoComponent
   ],
   imports: [
    
