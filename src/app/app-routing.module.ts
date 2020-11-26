@@ -11,6 +11,11 @@ import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { PickupComponent } from './pickup/pickup.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { PagoComponent } from './pago/pago.component';
+
 import { AddCategoryComponent } from './admin/add-category/add-category.component'
 import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.component';
 import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
@@ -21,10 +26,10 @@ const routes: Routes = [
   
   { path: '', component: HomeComponent},
   { path: 'user', component: UserComponent},
-  {path: 'signin', component: SignInComponent},
-  {path: 'signup', component: SignUpComponent},
-  {path: 'products', component: ProductsComponent},
-  { path: 'cart', component: CartComponent },
+  { path: 'signin', component: SignInComponent},
+  { path: 'signup', component: SignUpComponent},
+  { path: 'products', component: ProductsComponent},
+  { path: 'cart', component: CartComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'admin-products', component: AdminProductsComponent },
   { path: 'users', component: AdminUsersComponent },
@@ -32,9 +37,16 @@ const routes: Routes = [
   { path: 'admin-metodo-pago', component: AddMetodoPagoComponent },
   { path: 'admin-metodo-retiro', component: AddMetodoRetiroComponent },
   { path:  'forgot-password', component:  ForgotPasswordComponent }
-  
 
-  
+
+  { path: 'admin-products', component: AdminProductsComponent},
+  { path: 'users', component: AdminUsersComponent},
+  { path: 'delivery', component: DeliveryComponent},
+  { path: 'pickup', component: PickupComponent},
+  { path: 'thankyou', component: ThankyouComponent},
+  { path: 'pago', component: PagoComponent}
+
+
 ];
 
 @NgModule({
