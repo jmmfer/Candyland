@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from  '../../auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {UserComponent} from '../user.component'
+import {Usuario} from "../usuario";
+import {UsuarioService} from "../usuario.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,7 +13,7 @@ import {UserComponent} from '../user.component'
 })
 export class SignUpComponent implements OnInit {
   
-
+  usuario: Usuario = new Usuario();
   form: FormGroup;
 
   
@@ -19,8 +21,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(private  authService:  AuthService,   
     private formBuilder: FormBuilder,
-    private userComponent: UserComponent
-  
+    private usuarioService: UsuarioService, public  router:  Router
+
     ) { }
 
   ngOnInit(): void {
@@ -42,10 +44,17 @@ get f() { return this.form.controls; }
         return;
     }
   
-  this.authService.register(this.f.email.value, this.f.password.value)
+  let idUser = this.authService.register(this.f.email.value, this.f.password.value);
+    console.log(idUser);
+    //this.usuario.userId= idUser;
+    this.create(this.usuario);
   
   };
 
-  
+  create(usuario) {
+    const UsuarioData = JSON.parse(JSON.stringify(usuario));
+    this.usuarioService.addUsuarioInforamtion(UsuarioData);
+    this.router.navigate(['signin']);
+  }
 
 }

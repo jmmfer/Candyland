@@ -22,7 +22,7 @@ export class UserComponent  {
   
   constructor(private UsuarioService: UsuarioService,  
     private angularFirestore: AngularFirestore  
-  ) {  
+  ) {
     this.getAllUsuario();  
   }  
   
@@ -39,24 +39,11 @@ export class UserComponent  {
     });  
   }  
   
-  onSubmit(f) {  
-    if (f.form.valid) {  
-      const UsuarioData = JSON.parse(JSON.stringify(this.Usuario));  
-      debugger;  
-      if (this.UsuarioId == null) {  
-        this.UsuarioService.addUsuarioInforamtion(UsuarioData);  
-      } else {  
-        this.UsuarioService.updateUsuarioInforamtion(this.UsuarioId, UsuarioData);  
-      }  
-      this.Usuario = new Usuario();  
-      f.submitted = false;  
-      this.formSubmitted = true;  
-      this.updateUsuario = false;  
-      setInterval(() => {  
-        this.formSubmitted = false;  
-  
-      }, 2000);  
-    }  
+  create(usuario) {
+      const UsuarioData = JSON.parse(JSON.stringify(usuario));
+      this.UsuarioService.addUsuarioInforamtion(UsuarioData);
+
+
   }  
   
  //Edit Usuario method  

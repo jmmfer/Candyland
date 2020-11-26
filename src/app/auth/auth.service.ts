@@ -24,9 +24,11 @@ export class AuthService {
     var result = await this.afAuth.signInWithEmailAndPassword(email, password)
     this.router.navigate(['admin-products']);
 }
- async register(email: string, password: string) {
-  var result = await this.afAuth.createUserWithEmailAndPassword(email, password)
-  console.log(result)
+ async register(email: string, password: string):Promise<string>{
+  var result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+  console.log(result.user.uid);
+  return result.user.uid;
+
   
 }
 async sendPasswordResetEmail(passwordResetEmail: string) {
