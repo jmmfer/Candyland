@@ -5,6 +5,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { map, finalize } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { CategoryService } from '../add-category/category.service';  
+import { Category } from '../add-category/category';
 
 
 @Component({
@@ -17,16 +19,20 @@ export class AdminProductsComponent {
   updateProduct: boolean = false;  
   products: Product[];  
   Product: Product= new Product();  
-  
   productId = null;  
   isToggle: boolean = false;  
   formSubmitted: boolean;  
   isDelete: boolean;  
+
+  categorys: Category[];
+  
   
   constructor(private productService: ProductService,  
-    private angularFirestore: AngularFirestore  
+    private angularFirestore: AngularFirestore,
+    private categoryService: CategoryService
   ) {  
     this.getAllProduct();  
+    this.getAllCategory();
   }  
   
   getAllProduct() {  
@@ -41,6 +47,19 @@ export class AdminProductsComponent {
   
     });  
   }  
+  getAllCategory() {  
+    this.categoryService.getAllCategory().subscribe((data: any) => {  
+      this.categorys= data.map(e => {  
+        return {  
+          id: e.payload.doc.id,  
+          ...e.payload.doc.data()  
+        } as Category;  
+      });  
+      console.log(this.categorys);  
+  
+    });  
+  }  
+  
   
   onSubmit(f) {  
     if (f.form.valid) {  

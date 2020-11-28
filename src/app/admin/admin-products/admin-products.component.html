@@ -48,9 +48,12 @@
                                     <div class="form-group">    
                                         <label class="col-form-label">Category<span    
                                                 class="mandatoryFieldColor">*</span></label>    
-                                        <input type="text" class="form-control" name="CategoryName" autofocus    
-                                            [(ngModel)]="Product.CategoryName" #product="ngModel"    
-                                            [ngClass]="{ 'is-invalid': f.submitted && product.invalid }" required />    
+                                        <select type="text" class="form-control" name="CategoryName" autofocus [(ngModel)]="Product.CategoryName" #product="ngModel">
+                                                
+                                        <option *ngFor="let category of categorys" [value]="category.CategoryName" >{{category.CategoryName}}</option>
+                                        
+            
+                                        </select>   
                                         <div *ngIf="f.submitted && product.invalid" class="invalid-feedback">    
                                             <div *ngIf="product.errors.required || product.pristine==false">Product   
                                                 Category is required</div>    

@@ -34,7 +34,8 @@
                                         <div class="form-group">    
                                             <label class="col-form-label">Category Name<span    
                                                     class="mandatoryFieldColor">*</span></label>    
-                                            <input type="text" class="form-control" name="CategoryName" autofocus    
+                                            <input type="text" class="form-control" name="CategoryName" autofocus  
+                                              
                                                 [(ngModel)]="Category.CategoryName" #category="ngModel"    
                                                 [ngClass]="{ 'is-invalid': f.submitted && category.invalid }" required />    
                                             <div *ngIf="f.submitted && category.invalid" class="invalid-feedback">    
