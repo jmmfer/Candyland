@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Usuario} from "../usuario";
 import {UsuarioService} from "../usuario.service";
 import {Router} from "@angular/router";
+import {Product} from '../../product';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  
+
   usuario: Usuario = new Usuario();
   form: FormGroup;
 
@@ -43,12 +44,15 @@ get f() { return this.form.controls; }
     if (this.form.invalid) {
         return;
     }
-  
-  let idUser = this.authService.register(this.f.email.value, this.f.password.value);
-    console.log(idUser);
-    //this.usuario.userId= idUser;
-    this.create(this.usuario);
-  
+
+    this.authService.register(this.f.email.value, this.f.password.value).then((value) => {
+      console.log(value);
+      console.log(value.uid);
+      this.usuario.userId= value.uid;
+      this.create(this.usuario);
+
+    });
+
   };
 
   create(usuario) {
