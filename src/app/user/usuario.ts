@@ -3,4 +3,5 @@ export class Usuario {
     fullName: string;
     phone: number;
     isAdmin: boolean = false;
+  
 }

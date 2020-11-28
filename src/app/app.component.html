@@ -3,12 +3,10 @@
   <img src="assets/img/logosinfondo.png" alt="Logo" class="nav-brand">
   <ul class="nav-menu">
       <li >
-          <a href="#">
-          <i class="fas fa-bars"></i>
-          </a>
+          
          </li>
       <li>
-          <a href="products">SHOP</a>
+          <a [routerLink]="['/products']">SHOP</a>
       </li>
       <li>
          <a href="#">ABOUT US</a>
@@ -17,21 +15,58 @@
   </ul>
   <ul class="nav-menu-right">
       <li>
-          <a href="signin">
+          <a [routerLink]="['/signin']">
               <i class="fas fa-user"></i>
           </a>
-          <a href="#">
-              <i class="fas fa-heart"></i>
-          </a>
-       
-          <a href="cart">
-              <i class="fas fa-shopping-cart"></i>
-          </a>
+          <ng-container *ngIf=isLoggedIn()>
+            <a [routerLink]="['/']">
+                <i class="fas fa-heart"></i>
+            </a>
+           
+          </ng-container>
+          <ng-container *ngIf=!isLoggedIn()>
+                <a [routerLink]="['/signin']">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+          </ng-container>
+          <ng-container *ngIf=isLoggedIn()>
+                <a [routerLink]="['/cart']">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+          </ng-container>
+         
+         
             
       </li>
   </ul>
+  
 
 </nav>
+<!-- Side navigation -->
+<div class="sidenav">
+        <a href="#">
+                <i class="fas fa-bars"></i>
+                </a>
+    <a routerLink="/">Home<i class="fas fa-angle-right"></i></a>
+    <a routerLink="/products">Shop<i class="fas fa-angle-right"></i></a> 
+    <a routerLink="/signin">Login <i class="fas fa-angle-right"></i></a>
+    <a routerLink="/signup">Register <i class="fas fa-angle-right"></i></a>
+    <ng-container *ngIf=isLoggedIn()>
+       <a routerLink="/profile">Profile <i class="fas fa-angle-right"></i></a>
+       <a href="#">Orders <i class="fas fa-angle-right"></i></a>
+        <a href="#" (click)="logout()">Logout
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </ng-container>
+ 
+  </div>
+  
+  <!-- Page content -->
+  <div class="main">
+    ...
+  </div>
+
+
 
 
 <div class="container">
@@ -64,3 +99,5 @@
   
 
 </div>
+
+

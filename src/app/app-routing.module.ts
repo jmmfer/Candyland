@@ -19,32 +19,35 @@ import { PagoComponent } from './pago/pago.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component'
 import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.component';
 import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
-import { ForgotPasswordComponent } from  './user/forgot-password/forgot-password.component'
+import { ForgotPasswordComponent } from  './user/forgot-password/forgot-password.component';
+import { ProfileComponent } from  './profile/profile.component'
+
+
 
 
 const routes: Routes = [
   
   { path: '', component: HomeComponent},
-  { path: 'user', component: UserComponent},
+  { path: 'users', component: UserComponent},
   { path: 'signin', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'cart', component: CartComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'admin-products', component: AdminProductsComponent },
-  { path: 'users', component: AdminUsersComponent },
+  { path: 'user', component: AdminUsersComponent },
   { path: 'admin-category', component: AddCategoryComponent },
   { path: 'admin-metodo-pago', component: AddMetodoPagoComponent },
   { path: 'admin-metodo-retiro', component: AddMetodoRetiroComponent },
-  { path:  'forgot-password', component:  ForgotPasswordComponent }
-
-
+  { path:  'forgot-password', component:  ForgotPasswordComponent },
   { path: 'admin-products', component: AdminProductsComponent},
   { path: 'users', component: AdminUsersComponent},
   { path: 'delivery', component: DeliveryComponent},
   { path: 'pickup', component: PickupComponent},
   { path: 'thankyou', component: ThankyouComponent},
-  { path: 'pago', component: PagoComponent}
+  { path: 'pago', component: PagoComponent},
+  { path: 'profile', component: ProfileComponent}
+
 
 
 ];

@@ -21,7 +21,7 @@ export class UsuarioService {
   //Update Existing Usuario
   updateUsuarioInforamtion(Usuarioid, UsuarioInfo) {  
     delete UsuarioInfo.id;  
-    this.angularFirestore.doc('Country/' + Usuarioid).update(UsuarioInfo);  
+    this.angularFirestore.doc('Usuario/' + Usuarioid).update(UsuarioInfo);  
   }  
   
   //Delete Usuario
