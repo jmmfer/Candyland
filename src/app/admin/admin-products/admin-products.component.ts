@@ -26,10 +26,19 @@ export class AdminProductsComponent {
 
   categorys: Category[];
   
+
+  title = "cloudsSorage";
+  selectedFile: File = null;
+  fb;
+  downloadURL: Observable<string>;
+  
+  
   
   constructor(private productService: ProductService,  
     private angularFirestore: AngularFirestore,
-    private categoryService: CategoryService
+    private categoryService: CategoryService, 
+    private storage: AngularFireStorage
+    
   ) {  
     this.getAllProduct();  
     this.getAllCategory();
@@ -47,6 +56,7 @@ export class AdminProductsComponent {
   
     });  
   }  
+
   getAllCategory() {  
     this.categoryService.getAllCategory().subscribe((data: any) => {  
       this.categorys= data.map(e => {  
@@ -60,7 +70,11 @@ export class AdminProductsComponent {
     });  
   }  
   
-  
+ 
+ 
+
+
+
   onSubmit(f) {  
     if (f.form.valid) {  
       const ProductData = JSON.parse(JSON.stringify(this.Product));  
@@ -102,6 +116,40 @@ export class AdminProductsComponent {
       }, 2000);  
     }  
   }  
+
+  onFileSelected(event) {
+    var n = Date.now();
+    const file = event.target.files[0];
+    const filePath = `ImagenesProductos/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`ImagenesProductos/${n}`, file);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          console.log("#####################")
+          console.log(this.downloadURL)
+          this.downloadURL.subscribe(url => {
+            console.log(url)
+            if (url) {
+              this.fb = url;
+              
+              this.productId.Image = url;
+            }
+            console.log(this.fb);
+           
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
+}
+
   
   
-}  
+  

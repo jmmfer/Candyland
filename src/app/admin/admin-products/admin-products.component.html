@@ -105,9 +105,13 @@
                           </div>       
                           <div class="form-group col-12">Image: 
                             <input type="file"
-                            id="file"
-                           
-                            />
+                                    id="file"
+                                    #userPhoto
+                                    (change)="onFileSelected($event)"
+                                    name="image"
+                                    autocomplete="off"
+                                    />
+                                    </div>
                            </div>
 
 
@@ -176,6 +180,6 @@
               </div>    
   
           </div>    
-      </div>    
+       
   </form>    
 </div>   
