@@ -24,6 +24,7 @@ export class AdminUsersComponent implements OnInit {
   constructor(private  authService:  AuthService,   
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService, public  router:  Router,
+    
   
 
     ) { }
@@ -33,7 +34,8 @@ export class AdminUsersComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       fullName: ['', Validators.required],
-      phone: ['', Validators.required]
+      phone: ['', Validators.required],
+      
   });
 }
 
@@ -52,6 +54,8 @@ get f() { return this.form.controls; }
     console.log(idUser);
     //this.usuario.userId= idUser;
     this.create(this.usuario);
+   
+  
   
   };
 
@@ -59,6 +63,9 @@ get f() { return this.form.controls; }
     const UsuarioData = JSON.parse(JSON.stringify(usuario));
     this.usuarioService.addUsuarioInforamtion(UsuarioData);
     this.router.navigate(['signin']);
+    //this.usuario.isAdmin == true; NO FUNCIONA
+   
+    
   }
 
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Usuario } from '../user/usuario';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  Usuario: Observable<any[]>;
+  usuarioSelected: Usuario;
+  constructor(db: AngularFirestore) {
+    this.Usuario = db.collection('Usuario').valueChanges(); }
 
   ngOnInit(): void {
   }
+  cargarUsuario(Usuario){
+    this.usuarioSelected = Usuario;
+    
 
+  }
+  
 }

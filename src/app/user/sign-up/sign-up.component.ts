@@ -49,6 +49,8 @@ get f() { return this.form.controls; }
       console.log(value);
       console.log(value.uid);
       this.usuario.userId= value.uid;
+      this.usuario.email = value.email;
+     
       this.create(this.usuario);
 
     });
@@ -58,7 +60,8 @@ get f() { return this.form.controls; }
   create(usuario) {
     const UsuarioData = JSON.parse(JSON.stringify(usuario));
     this.usuarioService.addUsuarioInforamtion(UsuarioData);
-    this.router.navigate(['signin']);
+    this.router.navigate(['products']);
+    alert("Usuario creado exitosamente")
   }
 
 }

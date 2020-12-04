@@ -5,4 +5,5 @@ export class Product {
     CategoryName: string;  
     ProductDescription: string;
     ProductCantidad: number;
+    
 }

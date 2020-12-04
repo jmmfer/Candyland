@@ -21,6 +21,7 @@ import { AddMetodoPagoComponent } from './admin/add-metodo-pago/add-metodo-pago.
 import { AddMetodoRetiroComponent } from './admin/add-metodo-retiro/add-metodo-retiro.component';
 import { ForgotPasswordComponent } from  './user/forgot-password/forgot-password.component';
 import { ProfileComponent } from  './profile/profile.component'
+import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 
 
 
@@ -46,7 +47,9 @@ const routes: Routes = [
   { path: 'pickup', component: PickupComponent},
   { path: 'thankyou', component: ThankyouComponent},
   { path: 'pago', component: PagoComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent},
+  { path: 'admin-orders', component: AdminOrderComponent}
+  
 
 
 

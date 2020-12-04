@@ -35,19 +35,7 @@ export class AppComponent {
   //Esto es lo del carrito
 
   insertarProducto(producto: Product, cantidad: number){
-    if (this.existeProducto(producto)){
-      let pesoActual = this.obtenerPesoProducto(producto);
-      this.modificarProducto(producto, pesoActual + cantidad);
-    } else {
-      this.carrito.listaBolsas.map((bolsa: Bolsa)=> {
-        //if (bolsa.precioRef == producto.ProductPrice && !bolsa.isClosed && (bolsa.pesoTotal + cantidad) <= PESO_MAX) {
-
-        //}
-
-
-
-      })
-    }
+   alert("Se inserto producto")
 
 
   }

@@ -1,15 +1,16 @@
 
 <div class="cards">
+   
 <div  *ngFor="let productList of Product | async" style="width: 18rem;">
     <div class="card col">
-    <img class="card-img-top" src="assets/img/gummies.jpg" alt="Card image cap">
+    <img class="card-img-top" src={{productList.Image}} alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{ productList.ProductName }}</h5>
       <h5 class="card-title">{{ productList.CategoryName }}</h5>
       <h5 class="card-title">{{ productList.ProductPrice }}</h5>
       
       
-      <button ng-click="cargarModal(productList" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Buy Now</button>
+      <button (click)="cargarModal(productList)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Buy Now</button>
     </div>
    </div>
   </div>
@@ -18,9 +19,9 @@
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content" >
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{productSelected.ProductName}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{productSelected?.ProductName}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -31,11 +32,11 @@
                 <img class="card-img-top" src="assets/img/gummies.jpg" alt="Card image cap">
             </div>
             <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Categoria </label>
+                <label for="recipient-name" class="col-form-label">Categoria: {{productSelected?.CategoryName}}</label>
 
             </div>
             <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Precio </label>
+                <label for="recipient-name" class="col-form-label">Precio: {{productSelected?.ProductPrice}} </label>
 
             </div>
           <div class="form-group">
@@ -44,14 +45,14 @@
             <input type="number" name="limonesusados" min="50"  step="50">
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Descripcion: </label>
+            <label for="message-text" class="col-form-label">Descripcion: {{productSelected?.ProductDescription}}</label>
           
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Continuar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar al carrito</button>
       </div>
     </div>
   </div>

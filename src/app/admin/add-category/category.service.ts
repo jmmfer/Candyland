@@ -20,7 +20,7 @@ export class CategoryService {
   //Update Existing Category
   updateCategoryInforamtion(categoryid, categoryInfo) {  
     delete categoryInfo.id;  
-    this.angularFirestore.doc('Country/' + categoryid).update(categoryInfo);  
+    this.angularFirestore.doc('Category/' + categoryid).update(categoryInfo);  
   }  
   
   //Delete Category

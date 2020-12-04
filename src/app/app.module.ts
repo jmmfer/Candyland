@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
@@ -33,6 +35,7 @@ import { PickupComponent } from './pickup/pickup.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { PagoComponent } from './pago/pago.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 
 
 
@@ -57,7 +60,8 @@ import { ProfileComponent } from './profile/profile.component';
     PickupComponent,
     ThankyouComponent,
     PagoComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminOrderComponent
   ],
   imports: [
    
