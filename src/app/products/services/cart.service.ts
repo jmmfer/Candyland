@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../../product';
+import {until} from 'selenium-webdriver';
+import elementIsNotSelected = until.elementIsNotSelected;
 
 export class Carrito {
   listaBolsas: Array<Bolsa>;
@@ -16,8 +18,13 @@ export class Bolsa {
   listaItem: Array<Item>;
   pesoTotal: number;
   isClosed: boolean;
+  constructor(producto: Product){
+    this.precioRef = producto.ProductPrice;
+    this.listaItem = new Array<Item>();
+    this.pesoTotal = 0;
+    this.isClosed = false;
+  }
 }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -37,28 +44,29 @@ export class CartService {
   public insertarProducto(producto: Product, cantidad: number){
     var self = this;
     let carroLocal = JSON.parse(localStorage.getItem(self.carrito));
-    console.log("*************************Antes de insertar****************************");
-    console.log(localStorage.getItem(self.carrito));
-    console.log(carroLocal);
-    console.log("*************************Antes de insertar****************************");
+
     if(carroLocal == null){
       carroLocal= new Carrito();
-    }
-    if (carroLocal.listaBolsas == null) {
       carroLocal.listaBolsas = new Array<Bolsa>();
-      carroLocal.listaBolsas.push(new Bolsa());
     }
-    if(carroLocal.listaBolsas[0].listaItem==null){
-      carroLocal.listaBolsas[0].listaItem = new Array<Item>();
+    let indice = self.buscarBolsa(producto,cantidad, carroLocal.listaBolsas);
+    let bolsa : Bolsa;
+    if(indice == -1){
+      bolsa = new Bolsa(producto);
+    }else{
+      bolsa = carroLocal.listaBolsas[indice];
     }
-    let nuevoItem:Item = new Item();
-    nuevoItem.producto = producto;
-    nuevoItem.cantidad = cantidad;
-    carroLocal.listaBolsas[0].listaItem.push(nuevoItem);
-    localStorage.setItem(self.carrito, JSON.stringify(carroLocal));
-    console.log("carrito final 2")
-    console.log( JSON.stringify(carroLocal));
-    console.log(carroLocal)
+    let resto :number;
+    if(self.maximo-bolsa.pesoTotal>=cantidad){
+      resto = 0;
+    }else{
+      resto = cantidad - (self.maximo-bolsa.pesoTotal);
+    }
+    let resultado = self.insertarActualizar(bolsa, producto, cantidad);
+
+    while(resto >0){
+
+    }
     /*
     let insertado: boolean = false;
     if (carroLocal.listaBolsas != null && carroLocal.listaBolsas.length > 0) {
@@ -120,7 +128,7 @@ export class CartService {
 
   }
 
-  insertarActualizar(bolsa: Bolsa, producto: Product, peso: number): Bolsa {
+  insertarActualizar(bolsa: Bolsa, producto: Product, peso: number): Object{
     var self =this;
     bolsa.listaItem.forEach(function (item: Item, i) {
       if (item.producto.toString() === producto.toString()) {
