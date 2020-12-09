@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, from } from 'rxjs';
 import { Product } from '../product';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AppComponent} from '../app.component'
+import { WishListService } from '../wishlist/wishlist.service';
+import { ProductService } from '../product.service';
 
 
 
@@ -32,15 +35,29 @@ export class ProductsComponent implements OnInit {
   filtro:string;
   allProduct:Array<Product> = new Array<Product>();
 
+  
 
-  constructor(db: AngularFirestore){
-    this.Product2 = db.collection('Product').valueChanges();
+
+  constructor(db: AngularFirestore, public app: AppComponent, private wishlistService: WishListService, private productService: ProductService){
+  
+      this.productService.getAllProduct().subscribe((data: any) => {  
+        this.allProduct = data.map(e => {  
+         return {  
+            id: e.payload.doc.id,  
+            ...e.payload.doc.data()  
+          } as Product;  
+       });  
+      this.Product = this.allProduct;
+    
+      });  
+ /*  
+   this.Product2 = db.collection('Product').valueChanges();
     this.Product2.forEach((item)=>{
       item.forEach((prod)=>{
         this.allProduct.push(prod as Product);
         this.Product.push(prod as Product);
       })
-    });
+    });*/
   }
 
   ngOnInit(): void {
@@ -51,6 +68,12 @@ export class ProductsComponent implements OnInit {
      })
     })*/
   }
+  isloggedin(){
+    return this.app.isLoggedIn();
+  }
+
+
+
   cargarModal(Product){
     this.productSelected = Product;
     
@@ -75,6 +98,14 @@ export class ProductsComponent implements OnInit {
 
     }
   }
+
+  addProduct(productId ){
+    let usuario = JSON.parse(localStorage.getItem("user"));
+    console.log(productId)
+    this.wishlistService.addWishlistInforamtion(usuario.uid, productId);
+  
+    }
+
 
 
 

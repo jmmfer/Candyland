@@ -37,6 +37,7 @@ import { PagoComponent } from './pago/pago.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 
@@ -63,7 +64,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PagoComponent,
     ProfileComponent,
     AdminOrderComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    WishlistComponent
   ],
   imports: [
    
