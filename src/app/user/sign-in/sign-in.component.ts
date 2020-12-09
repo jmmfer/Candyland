@@ -36,8 +36,12 @@ get f() { return this.form.controls; }
         return;
     }
   
-  const result = this.authService.login(this.f.email.value, this.f.password.value)
-  console.log(this.f.email.value)
+  const result = this.authService.login(this.f.email.value, this.f.password.value).then(function (){
+
+  }
+
+  );
+
 
 
   
