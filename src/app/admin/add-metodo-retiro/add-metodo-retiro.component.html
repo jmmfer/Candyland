@@ -3,28 +3,24 @@
         <div class="card-body pb-0">    
             <div class="card">    
                 <div class="card-header main-search dash-search">    
-                    <h1 style="text-align: center;">    
-                        MANAGE METODO DE RETIRO   
+                    <h1 style="text-align: center; color: black;" >    
+                        ADMINISTRACIÓN METODO DE RETIRO   
                     </h1>    
                 </div>    
             </div>    
             <div class="row">    
                 <div class="col-12 col-md-12">    
                     <div class="card">    
-                        <div *ngIf="!updateMetor" class="card-header">    
-                            Add New Metodo de Retiro   
-                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">New Metodo de retiro has been    
-                                added    
-                                successfully...</h3>    
-                            <h3 *ngIf="isDelete" style="text-align: center; color: green;">Metodo de retiro has been deleted    
-                                successfully...</h3>    
+                        <div *ngIf="!updateMetor" class="card-header" style="color: black;">    
+                            AGREGAR METODO DE RETIRO 
+                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Nuevo Metodo de retiro ha sido agregado existosamente... </h3>    
+                            <h3 *ngIf="isDelete" style="text-align: center; color: green;">Metodo de retiro ha sido eliminado exitosamente...
+                                </h3>    
                         </div>    
     
                         <div *ngIf="updateMetor" class="card-header">    
-                            Update Metodo de retiro
-                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Existing Metodo de pago has    
-                                been updated    
-                                successfully...</h3>    
+                            Actualizar Metodo de retiro
+                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Metodo de retiro existente ha sido actualizado satisfactoriamente...</h3>    
                         </div>    
     
                         <div class="card-body">    
@@ -47,10 +43,10 @@
                                     <div class="col-12 col-md-12">    
                                         <div class="btn-group mb-3 mt-2 cmn-btn-grp">    
                                             <button *ngIf="!updateMetor" type="submit" style="margin-left:1px"    
-                                                class="btn btn-success">Add    
+                                                class="btn btn-success">Agregar    
                                                 Metodo de retiro</button>    
                                             <button *ngIf="updateMetor" type="submit" style="margin-left:1px"    
-                                                class="btn btn-success">Update    
+                                                class="btn btn-success">Actualizar  
                                                 Metodo de retiro</button>    
                                         </div>    
                                     </div>    
@@ -62,12 +58,12 @@
     
                 <div class="col-12 col-md-12">    
                     <div class="card">    
-                        <div class="card-header">Metodo de retiro Management</div>    
+                        <div class="card-header" style="color: black; text-align: center;">Administrar Metodo de retiro </div>    
                         <div class="card-body position-relative">    
                             <div class="table-responsive cnstr-record product-tbl">    
                                 <table class="table table-bordered heading-hvr">    
                                     <thead>    
-                                        <tr>    
+                                        <tr style="color: black;">    
                                             <th class="active">Tipo</th>    
                                             
                                             <th width="60"> </th>    

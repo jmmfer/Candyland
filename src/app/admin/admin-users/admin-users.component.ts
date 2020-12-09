@@ -49,21 +49,25 @@ get f() { return this.form.controls; }
     if (this.form.invalid) {
         return;
     }
-  
-  let idUser = this.authService.register(this.f.email.value, this.f.password.value);
-    console.log(idUser);
-    //this.usuario.userId= idUser;
-    this.create(this.usuario);
-   
-  
+    this.authService.register(this.f.email.value, this.f.password.value).then((value) => {
+      console.log(value);
+      console.log(value.uid);
+      this.usuario.userId= value.uid;
+      this.usuario.email = value.email;
+     
+      this.create(this.usuario);
+
+    });
   
   };
 
   create(usuario) {
     const UsuarioData = JSON.parse(JSON.stringify(usuario));
+    UsuarioData.isAdmin = true; 
     this.usuarioService.addUsuarioInforamtion(UsuarioData);
-    this.router.navigate(['signin']);
-    //this.usuario.isAdmin == true; NO FUNCIONA
+    this.router.navigate(['admin-products']);
+    alert("Administrador creado exitosamente")
+   
    
     
   }

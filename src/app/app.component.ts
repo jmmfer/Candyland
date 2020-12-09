@@ -3,6 +3,9 @@ import { AuthService } from './auth/auth.service'
 import { Bolsa } from './compra/bolsa';
 import { Carrito } from './compra/carrito';
 import { Product } from './product';
+import {UsuarioService} from "../app/user/usuario.service";
+
+import { Usuario } from './user/usuario'
 
 
 
@@ -19,6 +22,8 @@ export class AppComponent {
   carrito: Carrito = new Carrito;
   //const PESO_MAX = 2000;
 
+  
+
   constructor(
     protected authService:AuthService
   ) {
@@ -30,6 +35,19 @@ export class AppComponent {
 
    logout(){
     this.authService.logout()
+  }
+
+  adminIsLoggedIn():boolean{
+    let v = (localStorage.getItem('usuario'));
+    //console.log(v)
+    if (v != 'undefined' && v != 'null'){
+      let o = JSON.parse(v);
+      return o.isAdmin === true;
+    } else {
+      return false;}
+    
+    
+
   }
 
   //Esto es lo del carrito

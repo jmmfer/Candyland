@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';  
 import { AngularFirestore } from '@angular/fire/firestore'; 
+import { Usuario } from './usuario';
 
 @Injectable({
   providedIn: 'root'
+
 })
 export class UsuarioService {
 
@@ -13,7 +15,9 @@ export class UsuarioService {
   getAllUsuario() {  
     return this.angularFirestore.collection('Usuario').snapshotChanges();  
   }  
-  
+
+ 
+
   //Adding new Usuario  
   addUsuarioInforamtion(UsuarioInfo) {  
     return this.angularFirestore.collection('Usuario').add(UsuarioInfo);  

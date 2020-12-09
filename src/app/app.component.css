@@ -36,6 +36,19 @@
       text-align: center;
       
   }
+  .btn-group-justified{
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  
+
+  }
+  .btn-group-justified a{
+    background-color: #3FAABB;
+    
+  }
   
   /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {

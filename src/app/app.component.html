@@ -9,7 +9,7 @@
           <a [routerLink]="['/products']">SHOP</a>
       </li>
       <li>
-         <a href="#">ABOUT US</a>
+         <a routerLink="/about-us">ABOUT US</a>
       </li> 
      
   </ul>
@@ -42,6 +42,20 @@
   
 
 </nav>
+
+<div class="btn-group btn-group-justified">
+    <ng-container *ngIf=adminIsLoggedIn()>
+    <a routerLink="/admin-products" class="btn btn-primary">Productos</a>
+    <a routerLink="/admin-category" class="btn btn-primary">Categorias</a>
+    <a routerLink="/admin-metodo-pago" class="btn btn-primary">Metodos de Pago</a>
+    <a routerLink="/admin-metodo-retiro" class="btn btn-primary">Metodos de Retiro</a>
+    <a routerLink="/admin-orders" class="btn btn-primary">Ordenes</a>
+    <a routerLink="/users" class="btn btn-primary">Usuarios</a>
+    <a routerLink="/user" class="btn btn-primary">Crear Admin</a>
+    </ng-container>
+    </div>
+
+
 <!-- Side navigation -->
 <div class="sidenav">
         <a href="#">
@@ -50,10 +64,10 @@
     <a routerLink="/">Home<i class="fas fa-angle-right"></i></a>
     <a routerLink="/products">Shop<i class="fas fa-angle-right"></i></a> 
     <a routerLink="/signin">Login <i class="fas fa-angle-right"></i></a>
-    <a routerLink="/signup">Register <i class="fas fa-angle-right"></i></a>
+    <a routerLink="/signup">Registro <i class="fas fa-angle-right"></i></a>
     <ng-container *ngIf=isLoggedIn()>
-       <a routerLink="/profile">Profile <i class="fas fa-angle-right"></i></a>
-       <a href="#">Orders <i class="fas fa-angle-right"></i></a>
+       <a routerLink="/profile">Perfil <i class="fas fa-angle-right"></i></a>
+       <a href="#">Ordenes <i class="fas fa-angle-right"></i></a>
         <a href="#" (click)="logout()">Logout
             <i class="fas fa-sign-out-alt"></i>
         </a>
@@ -73,7 +87,7 @@
 
 <div class="footer">
     <div class="social">
-        <p>CONTACT US</p>
+        <p>CONTÁCTANOS</p>
         <div class="links">
             <a href="#">
                 <i class="fab fa-facebook-f"></i>

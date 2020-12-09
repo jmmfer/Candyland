@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';  
 import { HttpClient } from '@angular/common/http';  
-import { AngularFirestore } from '@angular/fire/firestore';  
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreModule} from '@angular/fire/firestore'; 
+
   
 @Injectable({  
   providedIn: 'root'  

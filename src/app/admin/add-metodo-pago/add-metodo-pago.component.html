@@ -3,28 +3,26 @@
         <div class="card-body pb-0">    
             <div class="card">    
                 <div class="card-header main-search dash-search">    
-                    <h1 style="text-align: center;">    
-                        MANAGE METODOS DE PAGO  
+                    <h1 style="text-align: center; color: black;">    
+                        ADMINISTRACIÓN METODOS DE PAGO  
                     </h1>    
                 </div>    
             </div>    
             <div class="row">    
                 <div class="col-12 col-md-12">    
                     <div class="card">    
-                        <div *ngIf="!updateMetop" class="card-header">    
-                            Add New Metodo de pago
-                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">New Metodo de pago has been    
-                                added    
-                                successfully...</h3>    
-                            <h3 *ngIf="isDelete" style="text-align: center; color: green;">Metodo de pago has been deleted    
-                                successfully...</h3>    
+                        <div *ngIf="!updateMetop" class="card-header" style="color: black;">    
+                            AGREGAR METODO DE PAGO
+                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Nuevo metodo de pago ha sido agregado exitosamente...
+                              </h3>    
+                            <h3 *ngIf="isDelete" style="text-align: center; color: green;">Metodo de pago ha sido eliminado exitosamente...</h3>    
                         </div>    
     
                         <div *ngIf="updateMetop" class="card-header">    
-                            Update Metodo de pago
-                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Existing Metodo de pago has    
-                                been updated    
-                                successfully...</h3>    
+                            Actualizar Metodo de pago
+                            <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Metodo de pago existente ha    
+                                sido actualizado exitosamente    
+                                </h3>    
                         </div>    
     
                         <div class="card-body">    
@@ -48,10 +46,10 @@
                                     <div class="col-12 col-md-12">    
                                         <div class="btn-group mb-3 mt-2 cmn-btn-grp">    
                                             <button *ngIf="!updateMetop" type="submit" style="margin-left:1px"    
-                                                class="btn btn-success">Add    
+                                                class="btn btn-success">Agregar    
                                                 Metodo de pago</button>    
                                             <button *ngIf="updateMetop" type="submit" style="margin-left:1px"    
-                                                class="btn btn-success">Update    
+                                                class="btn btn-success">Actualizar   
                                                 Metodo de pago</button>    
                                         </div>    
                                     </div>    
@@ -63,12 +61,12 @@
     
                 <div class="col-12 col-md-12">    
                     <div class="card">    
-                        <div class="card-header">Metodo de pago Management</div>    
+                        <div class="card-header" style="color: black; text-align: center;">Administrar Metodo de pago </div>    
                         <div class="card-body position-relative">    
                             <div class="table-responsive cnstr-record product-tbl">    
                                 <table class="table table-bordered heading-hvr">    
                                     <thead>    
-                                        <tr>    
+                                        <tr style="color: black;">    
                                             <th class="active">Tipo</th>    
                                          
                                             <th width="60"> </th>    
