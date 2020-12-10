@@ -1,162 +1,158 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../../product';
 import {until} from 'selenium-webdriver';
-import elementIsNotSelected = until.elementIsNotSelected;
+import {Usuario} from '../../user/usuario';
+import {Carrito} from '../../compra/carrito';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {Item} from '../../compra/Item';
+import {Bolsa} from '../../compra/bolsa';
 
-export class Carrito {
-  listaBolsas: Array<Bolsa>;
-  precioTotal: number;
-}
 
-export class Item {
-  producto: Product;
-  cantidad: number;
-}
 
-export class Bolsa {
-  precioRef: number;
-  listaItem: Array<Item>;
-  pesoTotal: number;
-  isClosed: boolean;
-  constructor(producto: Product){
-    this.precioRef = producto.ProductPrice;
-    this.listaItem = new Array<Item>();
-    this.pesoTotal = 0;
-    this.isClosed = false;
+export class Respuesta {
+  carrito:Carrito;
+  resto:number;
+
+
+  constructor(carrito: Carrito, resto: number) {
+    this.carrito = carrito;
+    this.resto = resto;
   }
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  carrito = 'shoppingCart';
+
   maximo = 2000;
 
-  constructor( ) {
+  constructor(private angularFirestore: AngularFirestore) {
   }
 
-  public vaciarCarrito(){
-    localStorage.setItem(this.carrito,null);
+  public vaciarCarrito() {
+    /*localStorage.setItem(this.carrito, null);
     let carro: Carrito = JSON.parse(localStorage.getItem(this.carrito));
-    console.log("carrito vacio")
-    console.log(carro);
+    console.log('carrito vacio');
+    console.log(carro);*/
   }
-  public insertarProducto(producto: Product, cantidad: number){
-   /* var self = this;
-    let carroLocal = JSON.parse(localStorage.getItem(self.carrito));
 
-    if(carroLocal == null){
-      carroLocal= new Carrito();
-      carroLocal.listaBolsas = new Array<Bolsa>();
+  public insertarProducto(producto: Product, cantidad: number) {
+    console.log("#######################################agregando a carrito#########################")
+    console.log(localStorage.getItem("usuario"));
+    let usuario: Usuario = JSON.parse(localStorage.getItem('usuario')) as Usuario;
+    console.log(usuario);
+    let carrito: Carrito;
+    console.log(usuario.shopCart);
+    console.log(usuario.shopCart != undefined);
+    if(Object.keys(usuario.shopCart).length !=0){
+    carrito = usuario.shopCart;
     }
-    let indice = self.buscarBolsa(producto,cantidad, carroLocal.listaBolsas);
-    let bolsa : Bolsa;
-    if(indice == -1){
-      bolsa = new Bolsa(producto);
-    }else{
-      bolsa = carroLocal.listaBolsas[indice];
+    else{
+      carrito = new Carrito();
     }
-    let resto :number;
-    if(self.maximo-bolsa.pesoTotal>=cantidad){
+    console.log(carrito);
+    let indice = this.buscarBolsa(carrito, producto);
+    console.log(indice);
+    if (indice == -1) {
+      console.log("indice -1")
+      carrito = this.crearBolsa(carrito, producto, cantidad);
+    } else {
+      console.log("otro indice")
+      let objeto:Respuesta = this.insertarActualizarProducto(carrito, indice, producto, cantidad);
+      console.log(objeto);
+      carrito = objeto.carrito;
+      if (objeto.resto != 0){
+        console.log("resto no -1")
+        carrito = this.crearBolsa(carrito, producto, objeto.resto);
+      }
+      console.log(carrito);
+    }
+    usuario.shopCart = carrito;
+    console.log(usuario);
+    localStorage.setItem("usuario",JSON.stringify(usuario));
+    console.log(localStorage.getItem("usuario"));
+    this.angularFirestore.doc('Usuario/' + usuario.id).set(usuario).then(result=>
+    {console.log("resultado-----------------------");
+      console.log(result);});
+  }
+
+  insertarActualizarProducto(carrito:Carrito, indice:number, producto: Product,cantidad:number):Respuesta {
+    let bolsa: Bolsa = carrito.listaBolsas[indice];
+    let cant:number;
+    let resto:number;
+    if(cantidad<=this.maximo-bolsa.pesoTotal){
+      cant = cantidad;
       resto = 0;
     }else{
-      resto = cantidad - (self.maximo-bolsa.pesoTotal);
+      cant = this.maximo-bolsa.pesoTotal;
+      resto = cantidad - cant;
     }
-    let resultado = self.insertarActualizar(bolsa, producto, cantidad);
 
-    while(resto >0){
-
-    }
-    /*
-    let insertado: boolean = false;
-    if (carroLocal.listaBolsas != null && carroLocal.listaBolsas.length > 0) {
-      carroLocal.listaBolsas.forEach(function (bolsa: Bolsa, i) {
-        if (!bolsa.isClosed && bolsa.precioRef == producto.ProductPrice) {
-          if (bolsa.pesoTotal + cantidad <= self.maximo) {
-            bolsa = self.insertarActualizar(bolsa,producto, cantidad);
-          } else {
-            let peso = self.maximo - bolsa.pesoTotal;
-            carroLocal.precioTotal = carroLocal.precioTotal - bolsa.pesoTotal * bolsa.precioRef;
-            bolsa = self.insertarActualizar(bolsa, producto, peso);
-            carroLocal.listaBolsas[i] = bolsa;
-            carroLocal.precioTotal = carroLocal.precioTotal + bolsa.pesoTotal * bolsa.precioRef;
-            cantidad = cantidad - peso;
-            while (cantidad > 0) {
-              let bolsaNueva: Bolsa = self.crearBolsa(producto, cantidad);
-              cantidad = cantidad - bolsaNueva.pesoTotal;
-              carroLocal.listaBolsas.push(bolsaNueva);
-              carroLocal.precioTotal = carroLocal.precioTotal + bolsaNueva.pesoTotal * bolsaNueva.precioRef;
-            }
-          }
-          localStorage.setItem(self.carrito, JSON.stringify(carroLocal));
-          return;
-        }
-      });
-    } else {
-      carroLocal.listaBolsas = new Array<Bolsa>();
-      while (cantidad > 0) {
-        let bolsaNueva: Bolsa = self.crearBolsa(producto, cantidad);
-        cantidad = cantidad - bolsaNueva.pesoTotal;
-        carroLocal.listaBolsas.push(bolsaNueva);
-        carroLocal.precioTotal = carroLocal.precioTotal + bolsaNueva.pesoTotal * bolsaNueva.precioRef;
+    let items:Array<Item>=bolsa.listaItem;
+    let i:number = -1;
+    if(items!=null){
+    for(let index=0;index<items.length;index++){
+      if(JSON.stringify(items[index].producto) === JSON.stringify(producto)){
+        i = index;
+        break;
       }
-      localStorage.setItem(self.carrito, JSON.stringify(carroLocal));
-      console.log("carrito final 2")
-      console.log( JSON.stringify(carroLocal));
-      console.log(carroLocal)
     }
-*/
+    }else{
+      items = new Array<Item>();
+    }
+    let item:Item;
+
+    if(i== -1){
+      item = new Item(producto,cant);
+      items.push(item);
+    }else{
+      item = items[i];
+      item.cantidad = item.cantidad+cant;
+      items[i] = item;
+    }
+    bolsa.pesoTotal = bolsa.pesoTotal+cant;
+    bolsa.listaItem = items;
+    carrito.listaBolsas[indice] = bolsa;
+    return new Respuesta(carrito,resto);
   }
 
-  /*crearBolsa(producto: Product, cantidad: number): Bolsa {
-    var self = this;
-    let bolsa: Bolsa = new Bolsa();
-    bolsa.precioRef = producto.ProductPrice;
-    if (cantidad >= self.maximo) {
-      bolsa.isClosed = true;
-      bolsa.pesoTotal = self.maximo;
-    } else {
-      bolsa.isClosed = false;
-      bolsa.pesoTotal = cantidad;
-    }
-    let item: Item = new Item();
-    item.producto = producto;
-    item.cantidad = bolsa.pesoTotal;
-    bolsa.listaItem = new Array<Item>();
-    bolsa.listaItem.push(item);
-    return bolsa;
-
-  }*/
-
-  insertarActualizar(bolsa: Bolsa, producto: Product, peso: number): Object{
-    var self =this;
-    bolsa.listaItem.forEach(function (item: Item, i) {
-      if (item.producto.toString() === producto.toString()) {
-        if (bolsa.pesoTotal + peso < self.maximo) {
-          item.cantidad = item.cantidad + peso;
-          bolsa.pesoTotal = bolsa.pesoTotal + peso;
-        } else {
-          bolsa.isClosed = true;
-          item.cantidad = item.cantidad + (self.maximo - bolsa.pesoTotal);
-          bolsa.pesoTotal = self.maximo;
+  buscarBolsa(carrito:Carrito, producto:Product):number{
+    let indice = -1;
+    console.log(carrito.listaBolsas)
+    if(carrito.listaBolsas != null) {
+      for (let index = 0; index < carrito.listaBolsas.length; index++) {
+        let bolsa: Bolsa = carrito.listaBolsas[index];
+        console.log(bolsa);
+        if (bolsa.precioRef == producto.ProductPrice && !bolsa.isClosed && bolsa.pesoTotal < this.maximo) {
+          indice = index;
+          break;
         }
-        bolsa.listaItem[i] = item;
-        return bolsa;
       }
-    });
-
-    let item: Item = new Item();
-    item.producto = producto;
-    if (bolsa.pesoTotal + peso < self.maximo) {
-      item.cantidad = item.cantidad + peso;
-      bolsa.pesoTotal = bolsa.pesoTotal + peso;
-    } else {
-      bolsa.isClosed = true;
-      item.cantidad = (self.maximo - bolsa.pesoTotal);
-      bolsa.pesoTotal = self.maximo;
     }
-    bolsa.listaItem.push(item);
-    return bolsa;
+    return indice;
+  }
+
+  private crearBolsa(carrito: Carrito, producto: Product, cantidad: number):Carrito {
+    while(cantidad >0){
+      let bolsa:Bolsa = new Bolsa(producto);
+      let cant:number;
+      if(cantidad <= this.maximo) {
+        cant = cantidad;
+        cantidad = 0
+      }else{
+        cant = this.maximo;
+        cantidad = cantidad- this.maximo
+        bolsa.isClosed = true;
+      }
+      bolsa.pesoTotal = cant;
+      let item: Item = new Item(producto,cant);
+      bolsa.listaItem.push(item);
+      carrito.listaBolsas.push(bolsa);
+      let precio = bolsa.precioRef*(cant/50);
+      carrito.precioTotal=precio;
+      return carrito;
+    }
   }
 }
 

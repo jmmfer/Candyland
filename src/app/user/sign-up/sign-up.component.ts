@@ -48,6 +48,7 @@ get f() { return this.form.controls; }
     this.authService.register(this.f.email.value, this.f.password.value).then((value) => {
       console.log(value);
       console.log(value.uid);
+      console.log(this.usuario);
       this.usuario.userId= value.uid;
       this.usuario.email = value.email;
      

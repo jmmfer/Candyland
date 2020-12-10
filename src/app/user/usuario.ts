@@ -9,4 +9,10 @@ export class Usuario {
     wishList: Array<string>;
     id: string;
     shopCart: Carrito;
+
+
+  constructor() {
+    this.wishList = new Array<string>();
+    this.shopCart = new Carrito();
+  }
 }

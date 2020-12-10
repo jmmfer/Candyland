@@ -16,8 +16,8 @@
       <h3 class="card-title">{{ productList.ProductName }}</h3>
       <h5 class="card-title">{{ productList.CategoryName }}</h5>
       <h5 class="card-title">Precio 50g: {{ productList.ProductPrice }}</h5>
-      
-      
+
+
       <button (click)="cargarModal(productList)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Comprar</button>
       <button type="button" class="btn btn-light" *ngIf=isloggedin() (click)="addProduct(productList.id)"><i class="fas fa-heart"></i>  Favorito</button>
 
@@ -63,8 +63,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        
-        <button type="button" class="btn btn-primary">Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
+        <button type="button" class="btn btn-primary" (click)="insertarProducto()">Agregar al carrito</button>
       </div>
     </div>
   </div>
