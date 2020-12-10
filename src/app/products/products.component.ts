@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { AppComponent} from '../app.component'
 import { WishListService } from '../wishlist/wishlist.service';
 import { ProductService } from '../product.service';
-import {CartService} from './services/cart.service';
+import { CartService } from './services/cart.service';
 
 
 

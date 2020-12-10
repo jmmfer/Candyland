@@ -30,6 +30,7 @@ get f() { return this.form.controls; }
 
  
   signin() {
+  
 
 
     // stop here if form is invalid
@@ -39,7 +40,9 @@ get f() { return this.form.controls; }
   
   const result = this.authService.login(this.f.email.value, this.f.password.value)
   console.log(this.f.email.value)
-
+  
+  
+  
 
   
   
