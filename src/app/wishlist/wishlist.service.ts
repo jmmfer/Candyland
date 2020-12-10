@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Product} from '../product';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Usuario} from '../user/usuario';
+import {Observable} from 'rxjs';
+import * as firebase from 'firebase/app';
 
 
 @Injectable({
@@ -15,13 +17,12 @@ export class WishListService {
   constructor(private angularFirestore: AngularFirestore) {
   }
 
-  async getWishList() {
+  getWishList():Observable<any>  {
     let usuario:Usuario = JSON.parse(localStorage.getItem("usuario"));
-    console.log("******************************getWishList*************************");
-    console.log(usuario);
-    console.log(usuario.wishList);
-    let productos = this.angularFirestore.collection<Product>('Producto', ref =>
-      ref.where('id', 'in', usuario.wishList).limit(1)).valueChanges({idField: "id"});
+
+    return this.angularFirestore.collection<Product>('Product', ref =>
+      ref.where(firebase.firestore.FieldPath.documentId(), 'in', usuario.wishList)).valueChanges({idField: "id"});
+
   }
 
    addWishlistInforamtion(producto) {

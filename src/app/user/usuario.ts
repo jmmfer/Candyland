@@ -1,3 +1,5 @@
+import {Carrito} from '../compra/carrito';
+
 export class Usuario {
     userId: string;
     fullName: string;
@@ -6,4 +8,5 @@ export class Usuario {
     email: string;
     wishList: Array<string>;
     id: string;
+    shopCart: Carrito;
 }

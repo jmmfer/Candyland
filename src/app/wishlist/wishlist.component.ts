@@ -24,6 +24,7 @@ export class WishlistComponent implements OnInit {
   user: Usuario;
   id: string;
   product: Product;
+  productos: Array<Product>;
 
   Wishlist: Observable<any[]>;
 
@@ -34,6 +35,16 @@ export class WishlistComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    let self = this;
+    console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+    this.Wishlist = this.wishlistService.getWishList();
+
+    this.Wishlist.subscribe(producto=>
+    {
+      console.log(producto);
+
+    self.productos = producto;
+    console.log(self.productos)})
   }
  
 
