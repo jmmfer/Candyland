@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
-import { Observable, combineLatest, from } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Product } from '../product';
 import { map } from 'rxjs/operators';
 import {CartService} from './services/cart.service';
@@ -37,10 +37,6 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  constructor(db: AngularFirestore){ 
-    this.Product = db.collection('Product').valueChanges();
-    
-  }
   ngOnInit(): void {
 
   /* combineLatest(this.startobs, this.endobs).subscribe((value) => {
@@ -98,5 +94,5 @@ export class ProductsComponent implements OnInit {
 
 
 
-
+ 
 }

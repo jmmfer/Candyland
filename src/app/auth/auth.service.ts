@@ -27,6 +27,7 @@ export class AuthService {
    }
    
    async login(email: string, password: string) {
+    try{
     let self = this;
     var result = await this.afAuth.signInWithEmailAndPassword(email, password).then((value) => {
       let uid = value.user.uid;
@@ -50,15 +51,25 @@ export class AuthService {
 
       this.router.navigate(['products']);
 
-    });
+    }); 
+  }catch(error){
+    console.error(error)
+    alert("Login fallido verifique sus datos")
+  }
 }
 
 
  async register(email: string, password: string):Promise<User>{
-  var result = await this.afAuth.createUserWithEmailAndPassword(email, password);
-  console.log(result.user.uid);
-  return result.user;
-  
+   try{
+    var result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    console.log(result.user.uid);
+    return result.user;
+    
+   }catch(error){
+     console.error(error)
+     alert("Verifique los datos ingresados")
+   }
+
 
   
 }

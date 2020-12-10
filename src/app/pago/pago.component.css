@@ -23,3 +23,24 @@
     margin: 20px;
     color: black;
 }
+.body {
+    margin-top: 20px;
+   
+}
+.container{
+    position: relative;
+    right: -12rem;
+}
+
+#metop{
+    position: relative;
+    right: -6em;
+    height: 100%;
+    width: 60%;
+}
+
+#pag{
+    position: relative;
+    right: -7.5em;
+
+}

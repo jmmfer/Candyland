@@ -32,16 +32,15 @@ get f() { return this.form.controls; }
   signin() {
 
 
+
     // stop here if form is invalid
     if (this.form.invalid) {
         return;
     }
   
-  const result = this.authService.login(this.f.email.value, this.f.password.value).then(function (){
+  const result = this.authService.login(this.f.email.value, this.f.password.value)
+  console.log(this.f.email.value)
 
-  }
-
-  );
 
 
 

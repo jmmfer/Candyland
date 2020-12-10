@@ -23,7 +23,7 @@ export class AdminProductsComponent {
   isToggle: boolean = false;  
   formSubmitted: boolean;  
   isDelete: boolean;  
-  fileLoaded;
+
   categorys: Category[];
   
 
@@ -31,7 +31,8 @@ export class AdminProductsComponent {
   selectedFile: File = null;
   fb;
   downloadURL: Observable<string>;
-  
+  fileLoaded;
+
   
   
   constructor(private productService: ProductService,  
@@ -149,12 +150,9 @@ export class AdminProductsComponent {
   }  
 
   onFileSelected(event) {
-
     this.fileLoaded = event.target.files[0];
-
-  }
 }
 
-  
+}
   
   
