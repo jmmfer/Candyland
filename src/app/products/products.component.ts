@@ -102,8 +102,8 @@ export class ProductsComponent implements OnInit {
   addProduct(productId ){
     let usuario = JSON.parse(localStorage.getItem("user"));
     console.log(productId)
-    this.wishlistService.addWishlistInforamtion(usuario.uid, productId);
-  
+    this.wishlistService.addWishlistInforamtion(productId);
+    console.log(this.wishlistService.getWishList());
     }
 
 

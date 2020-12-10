@@ -34,7 +34,7 @@ export class AuthService {
       let uid = value.user.uid;
       console.log(uid);
       let usuario = self.db.collection<Usuario>('Usuario', ref =>
-        ref.where('userId', '==', uid).limit(1)).valueChanges().pipe(
+        ref.where('userId', '==', uid).limit(1)).valueChanges({idField: "id"}).pipe(
           flatMap(users=>users)
       );
       usuario.subscribe(queriedItems => {
