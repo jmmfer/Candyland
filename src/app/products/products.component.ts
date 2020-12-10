@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore} from '@angular/fire/firestore';
+import { Observable, combineLatest, from } from 'rxjs';
 import { Product } from '../product';
 import { map } from 'rxjs/operators';
 import {CartService} from './services/cart.service';
+import { Subject } from 'rxjs';
+import { AppComponent} from '../app.component'
+import { WishListService } from '../wishlist/wishlist.service';
+import { ProductService } from '../product.service';
+
 
 
 
@@ -32,26 +37,24 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  filtrar():void{
-    console.log("Entro en el filtro");
-    let src = this;
-    if(this.filtro ===""){
-
-      this.Product= this.allProduct;
-    }else{
-      this.Product = this.allProduct.filter(function(prod){
-        console.log(prod.ProductName);
-        console.log(src.filtro);
-        console.log(prod.ProductName.includes(src.filtro));
-        console.log(prod.CategoryName);
-        console.log(prod.CategoryName.includes((src.filtro)));
-        return prod.ProductName.includes(src.filtro) || prod.CategoryName.includes((src.filtro));
-      });
-
-    }
+  constructor(db: AngularFirestore){ 
+    this.Product = db.collection('Product').valueChanges();
+    
   }
   ngOnInit(): void {
+
+  /* combineLatest(this.startobs, this.endobs).subscribe((value) => {
+     this.firequery(value[0], value[1]).subscribe((products)=> {
+       this.products = products;
+     })
+    })*/
   }
+  isloggedin(){
+    return this.app.isLoggedIn();
+  }
+
+
+
   cargarModal(Product){
     this.productSelected = Product;
 
@@ -65,4 +68,35 @@ export class ProductsComponent implements OnInit {
   vaciarCarrito(){
     this.cartService.vaciarCarrito();
   }
+
+  filtrar():void{
+    console.log("Entro en el filtro");
+    let src = this;
+    if(this.filtro ===""){
+
+      this.Product= this.allProduct;
+    }else{
+      this.Product = this.allProduct.filter(function(prod){
+        console.log(prod.ProductName);
+        console.log(src.filtro);
+        console.log(prod.ProductName.includes(src.filtro));
+        console.log(prod.CategoryName);
+        console.log(prod.CategoryName.includes((src.filtro)));
+        return prod.ProductName.toLowerCase().includes(src.filtro.toLowerCase()) || prod.CategoryName.toLowerCase().includes((src.filtro.toLowerCase()));
+      });
+
+    }
+  }
+
+  addProduct(productId ){
+    let usuario = JSON.parse(localStorage.getItem("user"));
+    console.log(productId)
+    this.wishlistService.addWishlistInforamtion(productId);
+    console.log(this.wishlistService.getWishList());
+    }
+
+
+
+
+
 }

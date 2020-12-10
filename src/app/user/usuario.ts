@@ -4,5 +4,6 @@ export class Usuario {
     phone: number;
     isAdmin: boolean = false;
     email: string;
-  
+    wishList: Array<string>;
+    id: string;
 }

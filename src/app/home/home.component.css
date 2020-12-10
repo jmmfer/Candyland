@@ -67,7 +67,7 @@
 /* minibanner */
 .banner{
     background: turquoise;
-
+    
 }
 .banner a{
     font-size: 22px;
@@ -75,5 +75,7 @@
     text-align: center;
     justify-content: center;
     text-decoration: none;
+  
 
 }
+

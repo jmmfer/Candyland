@@ -3,8 +3,8 @@
             <div class="card-body pb-0">    
                 <div class="card">    
                     <div class="card-header main-search dash-search">    
-                        <h1 style="text-align: center;">    
-                            Administrador de Usuarios
+                        <h1 style="text-align: center; color: black;">    
+                            ADMINISTRACIÓN DE USUARIOS
                         </h1>    
                     </div>    
                 </div>    
@@ -13,7 +13,7 @@
                         <div class="card">    
                        
                             <div *ngIf="updateUsuario" class="card-header">    
-                                Update Usuario  
+                                Actualizar Usuario  
                                 <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Existing Usuario has    
                                     been updated    
                                     successfully...</h3>    
@@ -22,45 +22,11 @@
                             <div class="card-body">    
                                 <div class="center-form">    
                                     <div class="row">    
-                                        <div class="col-12 col-md-6">    
-                                            <div class="form-group">    
-                                                <label class="col-form-label">Full Name<span    
-                                                        class="mandatoryFieldColor">*</span></label>    
-                                                <input type="text" class="form-control" name="fullName" autofocus    
-                                                    [(ngModel)]="Usuario.fullName"   
-                                                  required />    
-                                           
-                                              
-                                            </div>    
-                                        </div>    
-                                        <div class="col-12 col-md-6">    
-                                                <div class="form-group">    
-                                                    <label class="col-form-label">Phone<span    
-                                                            class="mandatoryFieldColor">*</span></label>    
-                                                    <input type="text" class="form-control" name="phone" autofocus    
-                                                        [(ngModel)]="Usuario.phone"  
-                                                        required /> 
-                                                     
-                                                </div>    
-                                            </div> 
-                                            <div class="col-12 col-md-6">    
-                                                <div class="form-group">    
-                                                    <label class="col-form-label">Email<span    
-                                                            class="mandatoryFieldColor">*</span></label>    
-                                                    <input type="text" class="form-control" name="email" autofocus    
-                                                        [(ngModel)]="Usuario.email"    
-                                                         required />    
-                                                     
-                                                </div>    
-                                            </div>    
-                                         
+                                       
+                                       
                                              
                                        
-                                            <div class="custom-control custom-checkbox mb-3">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Administrador</label>
-                                                  
-                                                  </div>
+                                            
                                         <div class="col-12 col-md-12">    
                                             <div class="btn-group mb-3 mt-2 cmn-btn-grp">    
                                                 
@@ -77,12 +43,12 @@
         
                     <div class="col-12 col-md-12">    
                         <div class="card">    
-                            <div class="card-header">Lista de Usuarios</div>    
+                            <div class="card-header" style="color: black;">Lista de Usuarios</div>    
                             <div class="card-body position-relative">    
                                 <div class="table-responsive cnstr-record product-tbl">    
                                     <table class="table table-bordered heading-hvr">    
                                         <thead>    
-                                            <tr>    
+                                            <tr style="color: black;">    
                                                     <th class="active">Nombre</th>    
                                                     <th class="active">Numero</th>  
                                                     <th class="active">Correo</th>  

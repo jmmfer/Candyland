@@ -1,16 +1,26 @@
 
+<div class="md-form active-pink active-pink-2 mb-3 mt-0">
+
+  <input (input)="filtrar()" [(ngModel)]="filtro" class="form-control" type="text" placeholder="Buscar por nombre o categoria..." aria-label="Search">
+</div>
+
+
+
+
 <div class="cards">
-<input type="text" (input)="filtrar()" [(ngModel)]="filtro">
-<div  *ngFor="let productList of Product" style="width: 18rem;">
+   
+<div  *ngFor="let productList of Product " style="width: 18rem;">
     <div class="card col">
     <img class="card-img-top" src={{productList.Image}} alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{ productList.ProductName }}</h5>
+      <h3 class="card-title">{{ productList.ProductName }}</h3>
       <h5 class="card-title">{{ productList.CategoryName }}</h5>
       <h5 class="card-title">{{ productList.ProductPrice }}</h5>
       
       
-      <button (click)="cargarModal(productList)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Buy Now</button>
+      <button (click)="cargarModal(productList)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Comprar</button>
+      <button type="button" class="btn btn-warning" *ngIf=isloggedin() (click)="addProduct(productList.id)">Me gusta</button>
+
     </div>
    </div>
   </div>
@@ -52,9 +62,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="insertarProducto()">Agregar al carrito</button>
+
+        <button type="button" class="btn btn-primary">Agregar al carrito</button>
       </div>
     </div>
   </div>
 </div>
-

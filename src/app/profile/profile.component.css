@@ -1,7 +1,10 @@
 body {
     background-color: #f9f9fa
 }
-
+#page-content{
+    position: relative;
+    right: 4em;
+}
 .padding {
     padding: 3rem !important
 }

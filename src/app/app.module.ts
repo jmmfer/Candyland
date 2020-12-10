@@ -36,6 +36,8 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { PagoComponent } from './pago/pago.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 
@@ -61,7 +63,9 @@ import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
     ThankyouComponent,
     PagoComponent,
     ProfileComponent,
-    AdminOrderComponent
+    AdminOrderComponent,
+    AboutUsComponent,
+    WishlistComponent
   ],
   imports: [
    
@@ -70,7 +74,7 @@ import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase, "cloud"),
     AngularFireDatabaseModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     FormsModule,
     AngularFireStorageModule,
     FormsModule, ReactiveFormsModule

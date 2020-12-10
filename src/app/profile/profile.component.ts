@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Usuario } from '../user/usuario';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../auth/auth.service';
 
+import { UsuarioService } from '../user/usuario.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,16 +13,41 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ProfileComponent implements OnInit {
   Usuario: Observable<any[]>;
-  usuarioSelected: Usuario;
+  emailToShow: string;
+  nameToShow: string;
+  phoneToShow: number;
+
+
+ 
+
+  
   constructor(db: AngularFirestore) {
     this.Usuario = db.collection('Usuario').valueChanges(); }
 
   ngOnInit(): void {
+    this.dataLoad()
+    
   }
-  cargarUsuario(Usuario){
-    this.usuarioSelected = Usuario;
+
+  
+  dataLoad() {
+    let v = (localStorage.getItem('usuario'));
+    let o = JSON.parse(v)
+    console.log(o)
+    this.emailToShow = o.email
+    this.nameToShow = o.fullName
+    this.phoneToShow = o.phone
+
     
 
-  }
+        
+}
+ 
+
+
+ 
   
+  
+ 
+
 }

@@ -3,8 +3,8 @@
             <div class="card-body pb-0">    
                 <div class="card">    
                     <div class="card-header main-search dash-search">    
-                        <h1 style="text-align: center;">    
-                            MANAGE Order
+                        <h1 style="text-align: center; color: black;">    
+                            ADMINISTRACIÓN ÓRDENES
                         </h1>    
                     </div>    
                 </div>    
@@ -12,7 +12,7 @@
                     <div class="col-12 col-md-12">    
                         <div class="card">    
                             <div *ngIf="!updateOrder" class="card-header">    
-                                Add New Order    
+                                   
                                 <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">New Order has been    
                                     added    
                                     successfully...</h3>    
@@ -20,8 +20,8 @@
                                     successfully...</h3>    
                             </div>    
         
-                            <div *ngIf="updateOrder" class="card-header">    
-                                Update Order    
+                            <div *ngIf="updateOrder" class="card-header" style="color: black;">    
+                                Actualizar Orden   
                                 <h3 *ngIf="formSubmitted" style="text-align: center; color: green;">Existing Order has    
                                     been updated    
                                     successfully...</h3>    
@@ -103,8 +103,7 @@
                                                     class="invalid-feedback">    
                                                     <div    
                                                         *ngIf="bolas.errors.required || bolsas.pristine==false">    
-                                                        Currency    
-                                                        Short Name is required</div>    
+                                                        </div>    
                                                 </div>    
                                             </div>    
                                         </div>    
@@ -169,12 +168,12 @@
         
                     <div class="col-12 col-md-12">    
                         <div class="card">    
-                            <div class="card-header">Order Management</div>    
+                            <div class="card-header" style="color: black; text-align: center;">ADMINISTRAR ORDEN</div>    
                             <div class="card-body position-relative">    
                                 <div class="table-responsive cnstr-record product-tbl">    
                                     <table class="table table-bordered heading-hvr">    
                                         <thead>    
-                                            <tr>    
+                                            <tr style="color: black;">    
                                                 <th >Email</th>    
                                                 <th>Phone</th>    
                                                 <th>UserId</th>    

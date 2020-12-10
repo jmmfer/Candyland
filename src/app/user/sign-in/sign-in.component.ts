@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from  '../../auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {UsuarioService} from "../../user/usuario.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +15,7 @@ export class SignInComponent implements OnInit {
  
 
   constructor(private  authService:  AuthService,   
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder, private usuarioService: UsuarioService
     
   
     ) { }
