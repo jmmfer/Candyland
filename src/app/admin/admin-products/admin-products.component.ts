@@ -31,6 +31,7 @@ export class AdminProductsComponent {
   selectedFile: File = null;
   fb;
   downloadURL: Observable<string>;
+  fileLoaded;
   
   
   
@@ -76,23 +77,54 @@ export class AdminProductsComponent {
 
 
   onSubmit(f) {  
-    if (f.form.valid) {  
-      const ProductData = JSON.parse(JSON.stringify(this.Product));  
-      debugger;  
-      if (this.productId == null) {  
-        this.productService.addProductInforamtion(ProductData);  
-      } else {  
-        this.productService.updateProductInforamtion(this.productId, ProductData);  
-      }  
-      this.Product= new Product();  
-      f.submitted = false;  
-      this.formSubmitted = true;  
-      this.updateProduct = false;  
-      setInterval(() => {  
-        this.formSubmitted = false;  
-  
-      }, 2000);  
-    }  
+    if (f.form.valid) {
+      const ProductData:Product = JSON.parse(JSON.stringify(this.Product));
+      debugger;
+      var n = Date.now();
+      const filePath = `ImagenesProductos/${n}`;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(`ImagenesProductos/${n}`, this.fileLoaded);
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            this.downloadURL = fileRef.getDownloadURL();
+            console.log("#####################")
+            console.log(this.downloadURL)
+            this.downloadURL.subscribe(url => {
+              console.log(url)
+              if (url) {
+                this.fb = url;
+                ProductData.Image = url;
+                console.log(ProductData);
+                if (this.productId == null) {
+                  this.productService.addProductInforamtion(ProductData);
+                } else {
+                  this.productService.updateProductInforamtion(this.productId, ProductData);
+                }
+                this.Product= new Product();
+                f.submitted = false;
+                this.formSubmitted = true;
+                this.updateProduct = false;
+                setInterval(() => {
+                  this.formSubmitted = false;
+
+                }, 2000);
+              }
+              console.log(this.fb);
+
+            });
+          })
+        )
+        .subscribe(url => {
+          if (url) {
+            console.log(url);
+          }
+        });
+
+
+
+    }
   }  
   
   //Edit Product method  
@@ -118,38 +150,9 @@ export class AdminProductsComponent {
   }  
 
   onFileSelected(event) {
-    var n = Date.now();
-    const file = event.target.files[0];
-    const filePath = `ImagenesProductos/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`ImagenesProductos/${n}`, file);
-    task
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL();
-          console.log("#####################")
-          console.log(this.downloadURL)
-          this.downloadURL.subscribe(url => {
-            console.log(url)
-            if (url) {
-              this.fb = url;
-              
-              this.productId.Image = url;
-            }
-            console.log(this.fb);
-           
-          });
-        })
-      )
-      .subscribe(url => {
-        if (url) {
-          console.log(url);
-        }
-      });
-  }
+    this.fileLoaded = event.target.files[0];
 }
 
-  
+}
   
   

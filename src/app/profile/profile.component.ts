@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   
   dataLoad() {
     let v = (localStorage.getItem('usuario'));
+    console.log(v)
     let o = JSON.parse(v)
     console.log(o)
     this.emailToShow = o.email

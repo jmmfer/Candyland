@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore} from '@angular/fire/firestore';
-import { Observable, combineLatest, from } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Product } from '../product';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AppComponent} from '../app.component'
 import { WishListService } from '../wishlist/wishlist.service';
 import { ProductService } from '../product.service';
+import {CartService} from './services/cart.service';
 
 
 
@@ -35,10 +36,12 @@ export class ProductsComponent implements OnInit {
   filtro:string;
   allProduct:Array<Product> = new Array<Product>();
 
+  cantidad : number;
+
   
 
 
-  constructor(db: AngularFirestore, public app: AppComponent, private wishlistService: WishListService, private productService: ProductService){
+  constructor(db: AngularFirestore, public app: AppComponent, private wishlistService: WishListService, private productService: ProductService, private cartService: CartService){
   
       this.productService.getAllProduct().subscribe((data: any) => {  
         this.allProduct = data.map(e => {  
@@ -105,7 +108,13 @@ export class ProductsComponent implements OnInit {
     this.wishlistService.addWishlistInforamtion(usuario.uid, productId);
   
     }
-
+    insertarProducto(){
+      this.cartService.insertarProducto(this.productSelected,this.cantidad);
+    }
+  
+    vaciarCarrito(){
+      this.cartService.vaciarCarrito();
+    }
 
 
 

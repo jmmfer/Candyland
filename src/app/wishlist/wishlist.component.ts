@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Wishlist} from './wishlist';
 import { Usuario} from '../user/usuario';
 import { Product } from '../product';
+import { Observable } from 'rxjs';
 
 
 
@@ -24,8 +25,13 @@ export class WishlistComponent implements OnInit {
   id: string;
   product: Product;
 
+  Wishlist: Observable<any[]>;
+
   constructor(private wishlistService: WishListService,  
-    private angularFirestore: AngularFirestore  ) { }
+    private db: AngularFirestore   ) { 
+
+     // this.Wishlist = db.collection('Wishlist').valueChanges();
+    }
 
   ngOnInit(): void {
   }
