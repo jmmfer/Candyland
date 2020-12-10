@@ -27,17 +27,21 @@ export class ProductsComponent implements OnInit {
   filtro:string;
   allProduct:Array<Product> = new Array<Product>();
 
-  constructor(db: AngularFirestore, private cartService: CartService){
-    this.Product2 = db.collection('Product').valueChanges();
-    this.Product2.forEach((item)=>{
-      item.forEach((prod)=>{
-        this.allProduct.push(prod as Product);
-        this.Product.push(prod as Product);
-      })
+  constructor(db: AngularFirestore, public app: AppComponent, private wishlistService: WishListService, private productService: ProductService, private cartService: CartService) {
+
+    this.productService.getAllProduct().subscribe((data: any) => {
+      this.allProduct = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          ...e.payload.doc.data()
+        } as Product;
+      });
+      this.Product = this.allProduct;
+
     });
   }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
   /* combineLatest(this.startobs, this.endobs).subscribe((value) => {
      this.firequery(value[0], value[1]).subscribe((products)=> {

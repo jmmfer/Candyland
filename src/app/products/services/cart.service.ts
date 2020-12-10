@@ -42,7 +42,7 @@ export class CartService {
     console.log(carro);
   }
   public insertarProducto(producto: Product, cantidad: number){
-    var self = this;
+   /* var self = this;
     let carroLocal = JSON.parse(localStorage.getItem(self.carrito));
 
     if(carroLocal == null){
@@ -66,7 +66,7 @@ export class CartService {
 
     while(resto >0){
 
-    }
+    }*/
     /*
     let insertado: boolean = false;
     if (carroLocal.listaBolsas != null && carroLocal.listaBolsas.length > 0) {
@@ -108,7 +108,7 @@ export class CartService {
 */
   }
 
-  crearBolsa(producto: Product, cantidad: number): Bolsa {
+  /*crearBolsa(producto: Product, cantidad: number): Bolsa {
     var self = this;
     let bolsa: Bolsa = new Bolsa();
     bolsa.precioRef = producto.ProductPrice;
@@ -126,7 +126,7 @@ export class CartService {
     bolsa.listaItem.push(item);
     return bolsa;
 
-  }
+  }*/
 
   insertarActualizar(bolsa: Bolsa, producto: Product, peso: number): Object{
     var self =this;
